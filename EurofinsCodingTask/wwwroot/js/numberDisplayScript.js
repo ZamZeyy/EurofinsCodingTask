@@ -3,17 +3,9 @@
 
 // Write your JavaScript code.
 
-document.getElementById("btnAddText").addEventListener("click", function () {
-    var text = document.createElement("p");
-    text.textContent = "This is a new text";
-    document.getElementById("textContainer").appendChild(text);
-});
-
-document.getElementById("btnDeleteAndRefresh").addEventListener("click", function () {
-    document.getElementById("textContainer").innerHTML = "";
 
 
-});
+
 
 //display 1-100
 document.getElementById("btnUseFunction").addEventListener("click", function () {
