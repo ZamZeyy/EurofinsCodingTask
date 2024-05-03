@@ -10,7 +10,8 @@ section {
     display: grid;
     place-items: center;
     align-content: center;
-    min-height: 100vh;
+    min-height: 75vh;
+    
 }
 
 #textContainer {
@@ -51,3 +52,12 @@ section {
 .visible {
     opacity: 1;
 }
+
+.text-special {
+    color: red;
+    font-size: 18px;
+    font-weight: bold;
+}
+
+
+
