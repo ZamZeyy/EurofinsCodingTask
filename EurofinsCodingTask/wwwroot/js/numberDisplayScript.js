@@ -18,7 +18,7 @@ document.getElementById("btnUseFunction").addEventListener("click", function () 
 
     for (var i = 1; i <= 100; i++) {
         var text = document.createElement("p");
-        text.setAttribute("id", i);
+        
 
         if (i === 1) {
             text.textContent = customValue1;
@@ -30,14 +30,18 @@ document.getElementById("btnUseFunction").addEventListener("click", function () 
         //if statement multiples of both 3 and 5 display “Eurofins”.
         else if (i % 3 == 0 && i % 5 == 0) {
             text.textContent = "Eurofins";
+            
         }
         //if statement when a number is divisable by 5 display "Five"
         else if (i % 5 == 0) {
             text.textContent = "Five";
+            
+
         }
         //if statement when a number is divisable by 3 display "Three"
         else if (i % 3 == 0 ) {
             text.textContent = "Three";
+            
         }
         else {
             text.textContent = i;
@@ -48,3 +52,5 @@ document.getElementById("btnUseFunction").addEventListener("click", function () 
 
 
 });
+
+

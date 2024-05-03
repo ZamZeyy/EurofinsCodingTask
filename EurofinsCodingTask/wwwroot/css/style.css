@@ -1,0 +1,53 @@
+body {
+    color: #ffffff;
+    background-color: #131316;
+    font-family: 'Roboto', sans-serif;
+    padding: 0;
+    margin: 0;
+}
+
+section {
+    display: grid;
+    place-items: center;
+    align-content: center;
+    min-height: 100vh;
+}
+
+#textContainer {
+    display: grid;
+    grid-template-columns: repeat(10, 1fr); /* Creates 10 columns */
+    grid-gap: 10px; /* Adds space between grid items */
+    margin-top: 20px; /* Adds space above the grid */
+}
+
+#textContainer p {
+    border: 1px solid #ccc; /* Adds a border around each paragraph */
+    padding: 8px; /* Adds some padding inside each paragraph */
+    text-align: center; /* Centers the text */
+    
+    
+}
+
+.blue-background {
+    background-color: blue;
+    color: white; 
+}
+
+.red-background {
+    background-color: red;
+    color: white; 
+}
+
+.orange-background {
+    background-color: orange;
+    color: white; 
+}
+
+.hidden {
+    opacity: 0;
+    transition: opacity 2s;
+}
+
+.visible {
+    opacity: 1;
+}
