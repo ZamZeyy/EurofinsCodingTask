@@ -19,6 +19,7 @@ document.getElementById("btnUseFunction").addEventListener("click", function () 
 document.getElementById("btnHide").addEventListener("click", function () {
     
     buttonHide();
+    buttonClicked = false;
 });
 
 
