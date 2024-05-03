@@ -12,14 +12,23 @@
 var buttonClicked = false;
 document.getElementById("btnUseFunction").addEventListener("click", function () {
     buttonClicked = true;
-    ButtonClick();
+    buttonClick();
     
+});
 
-
+document.getElementById("btnHide").addEventListener("click", function () {
+    
+    buttonHide();
 });
 
 
-function ButtonClick() {
+
+function buttonHide() {
+    document.getElementById("textContainer").innerHTML = "";
+}
+
+
+function buttonClick() {
     console.log("btnUseFunction clicked");
     document.getElementById("textContainer").innerHTML = ""; // Clear previous entries
 
@@ -76,7 +85,7 @@ document.getElementById("toggleColorBlue").addEventListener("change", function (
     blueToggle = this.checked;
     console.log("blueToggle: " + blueToggle);
     if (buttonClicked == true){
-        ButtonClick();
+        buttonClick();
     }
     
 });
@@ -89,7 +98,7 @@ document.getElementById("toggleColorRed").addEventListener("change", function ()
     redToggle = this.checked;
     console.log("redToggle: " + redToggle);
     if (buttonClicked == true) {
-        ButtonClick();
+        buttonClick();
     }
 });
 
@@ -99,7 +108,7 @@ document.getElementById("toggleColorOrange").addEventListener("change", function
     orangeToggle = this.checked;
     console.log("orangeToggle: " + orangeToggle);
     if (buttonClicked == true) {
-        ButtonClick();
+        buttonClick();
     }
 });
 
