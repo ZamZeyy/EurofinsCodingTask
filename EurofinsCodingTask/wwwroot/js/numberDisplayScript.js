@@ -10,6 +10,7 @@
 //display 1-100
 
 var buttonClicked = false;
+var numberBackToggle = false;
 document.getElementById("btnUseFunction").addEventListener("click", function () {
     buttonClicked = true;
     buttonClick();
@@ -22,6 +23,15 @@ document.getElementById("btnHide").addEventListener("click", function () {
     buttonClicked = false;
 });
 
+//toggleNumberBack
+
+document.getElementById("toggleNumberBack").addEventListener("change", function () {
+    numberBackToggle = this.checked;
+    
+    if (buttonClicked == true) {
+        buttonClick();
+    }
+});
 
 
 function buttonHide() {
@@ -38,41 +48,51 @@ function buttonClick() {
 
     for (var i = 1; i <= 100; i++) {
         var text = document.createElement("p");
-
-
-        if (i === 1) {
-            text.textContent = customValue1;
+        if (numberBackToggle == true) { //using == true for easier readability
+            text.textContent = i;
         }
-        else if (i === 100) {
-            text.textContent = customValue100;
-        }
+        else { 
 
-        //if statement multiples of both 3 and 5 display “Eurofins”.
-        else if (i % 3 == 0 && i % 5 == 0) {
-            text.textContent = "Eurofins";
+            if (i === 1) {
+                text.textContent = customValue1;
+            }
+            else if (i === 100) {
+                text.textContent = customValue100;
+            }
+
+            //if statement multiples of both 3 and 5 display “Eurofins”.
+            else if (i % 3 == 0 && i % 5 == 0) {
+                text.textContent = "Eurofins";
                 if (orangeToggle) {
                     text.className = "orange-background";
                 }
 
-        }
-        //if statement when a number is divisable by 5 display "Five"
-        else if (i % 5 == 0) {
-            text.textContent = "Five";
+            }
+            //if statement when a number is divisable by 5 display "Five"
+            else if (i % 5 == 0) {
+                text.textContent = "Five";
                 if (redToggle) {
                     text.className = "red-background";
                 }
 
-        }
-        //if statement when a number is divisable by 3 display "Three"
-        else if (i % 3 == 0) {
-            text.textContent = "Three";
+            }
+            //if statement when a number is divisable by 3 display "Three"
+            else if (i % 3 == 0) {
+                text.textContent = "Three";
+                console.log ("blue toggle is" + blueToggle);
                 if (blueToggle) {
                     text.className = "blue-background";
+                    console.log("should be blue")
                 }
 
-        }
-        else {
-            text.textContent = i;
+            }
+            else if (!(i % 3 == 0 && i % 5 == 0) || !(i % 3 == 0 || i % 5 == 0)) { //if not divisable by 3 or 5 or both cover all other cases
+                text.textContent = i;
+            }
+            else{
+                console.log("how did this happen"); //should never happen but just in case
+                
+            }
         }
         document.getElementById("textContainer").appendChild(text);
     }
