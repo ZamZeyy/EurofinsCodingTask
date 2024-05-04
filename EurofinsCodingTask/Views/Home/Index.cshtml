@@ -69,11 +69,22 @@
         </div >
 
 
+    <form asp-action="SaveNumbers" method="post">
     <label for="customValue1">Custom Value for 1:</label>
-    <input id="customValue1" type="text" placeholder="1">
+    <input id="customValue1" name="customValue1" type="text" placeholder="1">
 
     <label for="customValue100">Custom Value for 100:</label>
-    <input id="customValue100" type="text" placeholder="100">
+    <input id="customValue100" name="customValue100" type="text" placeholder="100">
+    
+    <div>
+        <button type="submit">Save Numbers</button>
+    </div>
+</form>
+
+
+    
+    
+    
     <div id="textContainer"></div>
     
 

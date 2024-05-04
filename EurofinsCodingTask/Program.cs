@@ -1,8 +1,14 @@
+using EurofinsCodingTask.Models;
+using Microsoft.EntityFrameworkCore;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
-
+builder.Services.AddDbContext<NumberContext>(options =>
+{ 
+options.UseSqlServer("Server=localhost;Database=EntriesDB;Trusted_Connection=True;TrustServerCertificate=True;");
+});
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.

@@ -1,16 +1,20 @@
-using EurofinsCodingTask.Models;
 using Microsoft.AspNetCore.Mvc;
 using System.Diagnostics;
+using EurofinsCodingTask.Models;
+using System;
 
 namespace EurofinsCodingTask.Controllers
 {
     public class HomeController : Controller
     {
         private readonly ILogger<HomeController> _logger;
+        private readonly NumberContext _context; // Add the context for database operations
 
-        public HomeController(ILogger<HomeController> logger)
+        // Modify the constructor to inject the database context
+        public HomeController(ILogger<HomeController> logger, NumberContext context)
         {
             _logger = logger;
+            _context = context;
         }
 
         public IActionResult Index()
@@ -22,6 +26,24 @@ namespace EurofinsCodingTask.Controllers
         {
             return View();
         }
+
+        // POST: Home/SaveNumbers
+        [HttpPost]
+        public IActionResult SaveNumbers(string customValue1, string customValue100)
+        {
+            NumberEntry newEntry = new NumberEntry
+            {
+                FirstNumber = customValue1,
+                LastNumber = customValue100,
+                DateUpdated = DateTime.Now
+            };
+
+            _context.NumberEntries.Add(newEntry);
+            _context.SaveChanges(); // Save the changes to the database
+
+            return RedirectToAction("Index"); // Redirect to Index or a confirmation page
+        }
+
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()
