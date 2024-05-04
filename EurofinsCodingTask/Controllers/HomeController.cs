@@ -29,7 +29,7 @@ namespace EurofinsCodingTask.Controllers
 
         // POST: Home/SaveNumbers
         [HttpPost]
-        public IActionResult SaveNumbers(string customValue1, string customValue100)
+        public IActionResult SaveNumbers(String customValue1, String customValue100)
         {
             NumberEntry newEntry = new NumberEntry
             {
@@ -41,7 +41,9 @@ namespace EurofinsCodingTask.Controllers
             _context.NumberEntries.Add(newEntry);
             _context.SaveChanges(); // Save the changes to the database
 
-            return RedirectToAction("Index"); // Redirect to Index or a confirmation page
+           
+
+            return RedirectToAction("Index");
         }
 
 
