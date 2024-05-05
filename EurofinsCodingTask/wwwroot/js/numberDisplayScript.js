@@ -46,24 +46,18 @@ function buttonClick() {
     var customValue1 = document.getElementById("customValue1").value || "1"; // Default if empty
     var customValue100 = document.getElementById("customValue100").value || "100"; // Default if empty
 
-    for (var i = 1; i <= 100; i++) {
+    for (var i = customValue1; i <= customValue100; i++) {
         var text = document.createElement("p");
         if (numberBackToggle == true) { //using == true for easier readability
             text.textContent = i;
         }
         else { 
 
-            if (i === 1) {
-                text.textContent = customValue1;
-            }
-            else if (i === 100) {
-                text.textContent = customValue100;
-            }
-
+            
             //if statement multiples of both 3 and 5 display “Eurofins”.
-            else if (i % 3 == 0 && i % 5 == 0) {
+             if (i % 3 == 0 && i % 5 == 0) {
                 text.textContent = "Eurofins";
-                if (orangeToggle) {
+                if (orangeToggle == true) {
                     text.className = "orange-background";
                 }
 
@@ -71,7 +65,7 @@ function buttonClick() {
             //if statement when a number is divisable by 5 display "Five"
             else if (i % 5 == 0) {
                 text.textContent = "Five";
-                if (redToggle) {
+                if (redToggle == true) {
                     text.className = "red-background";
                 }
 
@@ -80,7 +74,7 @@ function buttonClick() {
             else if (i % 3 == 0) {
                 text.textContent = "Three";
                 console.log ("blue toggle is" + blueToggle);
-                if (blueToggle) {
+                if (blueToggle == true) {
                     text.className = "blue-background";
                     console.log("should be blue")
                 }
@@ -100,39 +94,41 @@ function buttonClick() {
 }
 
 
-//if type="checkbox" id="toggleColorBlue" is checked, set blueToggle to True
+
+// Variables to store the state of each toggle
 var blueToggle = false;
-document.getElementById("toggleColorBlue").addEventListener("change", function () {
-    blueToggle = this.checked;
-    console.log("blueToggle: " + blueToggle);
-    if (buttonClicked == true){
-        buttonClick();
-    }
-    
-});
-
-
-
-//if type="checkbox" id="toggleColorRed" is checked, set redToggle to True
 var redToggle = false;
-document.getElementById("toggleColorRed").addEventListener("change", function () {
-    redToggle = this.checked;
-    console.log("redToggle: " + redToggle);
-    if (buttonClicked == true) {
-        buttonClick();
-    }
-});
-
-//if type="checkbox" id="toggleColorOrange" is checked, set orangeToggle to True
 var orangeToggle = false;
-document.getElementById("toggleColorOrange").addEventListener("change", function () {
-    orangeToggle = this.checked;
-    console.log("orangeToggle: " + orangeToggle);
-    if (buttonClicked == true) {
+
+// Function to handle the change event for any color toggle
+function handleColorToggleChange(event) {
+    var checkboxId = event.target.id;
+    var isChecked = event.target.checked;
+
+    switch (checkboxId) {
+        case 'toggleColorBlue':
+            blueToggle = isChecked;
+            break;
+        case 'toggleColorRed':
+            redToggle = isChecked;
+            break;
+        case 'toggleColorOrange':
+            orangeToggle = isChecked;
+            break;
+    }
+
+    console.log(`${checkboxId}: ${isChecked}`);
+
+    // If a button click state is true, invoke the buttonClick function
+    if (buttonClicked === true) {
         buttonClick();
     }
-});
+}
 
+// Attach the event listener to each checkbox
+document.getElementById('toggleColorBlue').addEventListener('change', handleColorToggleChange);
+document.getElementById('toggleColorRed').addEventListener('change', handleColorToggleChange);
+document.getElementById('toggleColorOrange').addEventListener('change', handleColorToggleChange);
 
 
 
