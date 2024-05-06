@@ -11,17 +11,67 @@
 
 var buttonClicked = false;
 var numberBackToggle = false;
+/*
 document.getElementById("btnUseFunction").addEventListener("click", function () {
     buttonClicked = true;
     buttonClick();
     
 });
+*/
 
 document.getElementById("btnHide").addEventListener("click", function () {
     
     buttonHide();
     buttonClicked = false;
 });
+
+document.getElementById("numbersForm").addEventListener("submit", function (event) {
+    
+    var customValueLower = document.getElementById("customValue1").value || 1;
+    var customValueHigher = document.getElementById("customValue100").value || 100;
+
+    if (customValueLower > customValueHigher) {
+        return;
+    }
+    buttonClicked = true;
+    buttonClick();
+  
+});
+
+/*
+document.getElementById("numbersForm").addEventListener("submit", function (event) {
+    $(function () {
+        // This replaces both the document ready and the native JS event listener setup
+        $('#numbersForm').on('submit', function (event) {
+            event.preventDefault();  // Prevent the form from submitting via the browser.
+
+            var formData = $(this).serialize(); // Serialize the form data.
+
+            $.ajax({
+                type: 'POST',
+                url: '/Home/SaveNumbers',
+                data: formData,
+                success: function (response) {
+                    alert('Numbers saved successfully!');
+                    
+                    
+                },
+                error: function () {
+                    alert('Error saving numbers.');
+                    // Handle error
+                }
+            });
+        });
+
+        buttonClicked = true; // Ensure 'buttonClicked' is declared in a scope accessible to where it's needed.
+        buttonClick(); // Ensure the 'buttonClick' function is defined or available in the scope
+            
+            
+        
+    });
+
+});
+*/
 
 //toggleNumberBack
 
@@ -43,8 +93,11 @@ function buttonClick() {
     console.log("btnUseFunction clicked");
     document.getElementById("textContainer").innerHTML = ""; // Clear previous entries
 
-    var customValue1 = document.getElementById("customValue1").value || "1"; // Default if empty
-    var customValue100 = document.getElementById("customValue100").value || "100"; // Default if empty
+    // Get the custom values from the form 1 and 100 by default
+    var customValue1 = document.getElementById("customValue1").value || 1;
+    var customValue100 = document.getElementById("customValue100").value || 100;
+    
+    
 
     for (var i = customValue1; i <= customValue100; i++) {
         var text = document.createElement("p");

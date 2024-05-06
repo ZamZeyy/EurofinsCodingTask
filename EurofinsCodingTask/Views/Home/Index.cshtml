@@ -36,7 +36,7 @@
     <h1>Prototype</h1>
 
     
-    <label for="toggleColorBlue">Toggle Blue for "Three":</label>
+    <label style="margin:10px;" for="toggleColorBlue">Toggle Blue for "Three":</label>
     <div class="checkbox-wrapper-20" >
     <div class="switch" >
     <input id="toggleColorBlue" class="input" type="checkbox">
@@ -45,7 +45,7 @@
     </div >
     
   
-    <label for="toggleColorRed">Toggle Red for "Five":</label>
+    <label style="margin:10px;" for="toggleColorRed">Toggle Red for "Five":</label>
     <div class="checkbox-wrapper-20" >
     <div class="switch" >
     <input id="toggleColorRed" class="input" type="checkbox">
@@ -53,7 +53,7 @@
     </div >
     </div >
     
-    <label for="toggleColorOrange">Toggle Orange for "Eurofins":</label>
+    <label style="margin:10px;" for="toggleColorOrange">Toggle Orange for "Eurofins":</label>
     <div class="checkbox-wrapper-20" >
         <div class="switch" >
         <input id="toggleColorOrange" class="input" type="checkbox">
@@ -61,7 +61,7 @@
         </div >
         </div >
 
-        <label for="toggleNumberBack">Toggle the numbers back:</label>
+        <label style="margin:10px;" for="toggleNumberBack">Toggle the numbers back:</label>
         <div class="checkbox-wrapper-20" >
         <div class="switch" >
         <input id="toggleNumberBack" class="input" type="checkbox">
@@ -71,31 +71,31 @@
 
 
     <form id="numbersForm" asp-action="SaveNumbers" method="post">
-    <label for="customValue1">Custom Value for 1:</label>
-    <input id="customValue1" name="customValue1" type="text" placeholder="1">
+    <label style="margin:10px;" for="customValue1">Custom Value for 1:</label>
+    <input id="customValue1" name="customValue1" type="number" placeholder="1">
 
-    <label for="customValue100">Custom Value for 100:</label>
-    <input id="customValue100" name="customValue100" type="text" placeholder="100">
+    <label style="margin:10px;" for="customValue100">Custom Value for 100:</label>
+    <input id="customValue100" name="customValue100" type="number" placeholder="100">
     
-    <div style="text-align: center;">
-        <button class="btn-12" style="background-color: #1c6fff; min-width: 180px; max-width:150px;" type="submit"><span>Save Numbers</span></button>
+    <div style="text-align: center;">  
+        <button class="btn-12" style="background-color: #1c6fff; min-width: 180px; max-width:150px;" type="submit"><span>Display</span></button>
+        <button type="button" class="btn-12" style="background-color: darkred; min-width: 180px; max-width:150px; margin-left: 10px;" id="btnHide"><span>Hide</span></button>
     </div>
+    
 </form>
 
 
 
+
     
     
     
-    <div id="textContainer"></div>
+    <div style="margin:50px" id="textContainer"></div>
     
 
 
 
-    <div class="button-container" style="margin: 30px">  
-    <button class="btn-12" style="background-color: #800080; min-width: 180px; max-width:150px;" id="btnUseFunction"> <span>Display</span></button>
-    <button class="btn-12" style="background-color: darkred; min-width: 180px; max-width:150px; " id="btnHide"><span>Hide</span></button>
-    </div>
+    
 
 
 
@@ -106,28 +106,44 @@
    
 
     <script>
-    $(document).ready(function() {
-        $('#numbersForm').on('submit', function(e) {
-            e.preventDefault();  // Prevent the form from submitting via the browser.
+        
+ 
+$(document).ready(function() {
+    $('#numbersForm').on('submit', function(e) {
+        e.preventDefault(); // Always call this first to stop the form from traditional submission
+        
+           // Fetch the values or set defaults if blank
+        var value1 = $('#customValue1').val() === "" ? 1 : parseInt($('#customValue1').val(), 10);
+        var value100 = $('#customValue100').val() === "" ? 100 : parseInt($('#customValue100').val(), 10);
 
-            var formData = $(this).serialize(); // Serialize the form data.
+        // Check if value1 is greater than value100
+        if (isNaN(value1) && isNaN(value100) || value1 > value100) {
+            alert('Custom Value for 1 cannot be greater than Custom Value for 100.');
+            return false; // Stop further execution
+        }
 
-            $.ajax({
-                type: 'POST',
-                url: '/Home/SaveNumbers', 
-                data: formData,
-                success: function(response) {
-                    alert('Numbers saved successfully!');
-                    // Handle success.
-                
-                },
-                error: function() {
-                    alert('Error saving numbers.');
-                    // Handle error.
-                }
-            });
+         var formData = {
+            'customValue1': value1,
+            'customValue100': value100
+        };
+
+        $.ajax({
+            type: 'POST',
+            url: '/Home/SaveNumbers',
+            data: formData,
+            success: function(response) {
+                alert('Numbers saved successfully!');
+                // Additional actions upon successful submission can be placed here
+            },
+            error: function() {
+                alert('Error saving numbers.');
+            }
         });
-        });
+    });
+});
+
+
+        
 </script>
 
     
