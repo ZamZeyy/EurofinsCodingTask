@@ -1,3 +1,10 @@
+/*////////////////////////////////////////////////////////////////////////////////
+this file contains the controller for the home page of the application.
+It contains the logic for saving the numbers entered by the user to the database.
+Mateusz Judka
+*/////////////////////////////////////////////////////////////////////////////////
+
+
 using Microsoft.AspNetCore.Mvc;
 using System.Diagnostics;
 using EurofinsCodingTask.Models;

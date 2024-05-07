@@ -1,23 +1,15 @@
-﻿// Please see documentation at https://learn.microsoft.com/aspnet/core/client-side/bundling-and-minification
-// for details on configuring this project to bundle and minify static web assets.
-
-// Write your JavaScript code.
-
-
-
-
-
-//display 1-100
+﻿/*////////////////////////////////////////////////////////////////////////////
+This script is used to display numbers 1-100 with the following conditions:
+- If the number is divisible by 3, display "Three"
+- If the number is divisible by 5, display "Five"
+- If the number is divisible by both 3 and 5, display "Eurofins"
+- If the number is not divisible by 3 or 5, display the number itself
+- The user can input custom values to display numbers between the custom values
+Mateusz Judka
+*/////////////////////////////////////////////////////////////////////////////
 
 var buttonClicked = false;
 var numberBackToggle = false;
-/*
-document.getElementById("btnUseFunction").addEventListener("click", function () {
-    buttonClicked = true;
-    buttonClick();
-    
-});
-*/
 
 document.getElementById("btnHide").addEventListener("click", function () {
     
@@ -25,6 +17,7 @@ document.getElementById("btnHide").addEventListener("click", function () {
     buttonClicked = false;
 });
 
+// Event listener for the form submission that also denies display if the custom value 1 is higher than custom value 100
 document.getElementById("numbersForm").addEventListener("submit", function (event) {
     
     var customValueLower = document.getElementById("customValue1").value || 1;
@@ -35,46 +28,9 @@ document.getElementById("numbersForm").addEventListener("submit", function (even
     }
     buttonClicked = true;
     buttonClick();
-  
 });
 
-/*
-document.getElementById("numbersForm").addEventListener("submit", function (event) {
-    $(function () {
-        // This replaces both the document ready and the native JS event listener setup
-        $('#numbersForm').on('submit', function (event) {
-            event.preventDefault();  // Prevent the form from submitting via the browser.
-
-            var formData = $(this).serialize(); // Serialize the form data.
-
-            $.ajax({
-                type: 'POST',
-                url: '/Home/SaveNumbers',
-                data: formData,
-                success: function (response) {
-                    alert('Numbers saved successfully!');
-                    
-                    
-                },
-                error: function () {
-                    alert('Error saving numbers.');
-                    // Handle error
-                }
-            });
-        });
-
-        buttonClicked = true; // Ensure 'buttonClicked' is declared in a scope accessible to where it's needed.
-        buttonClick(); // Ensure the 'buttonClick' function is defined or available in the scope
-            
-            
-        
-    });
-
-});
-*/
-
-//toggleNumberBack
-
+// Event listener for the number back toggle
 document.getElementById("toggleNumberBack").addEventListener("change", function () {
     numberBackToggle = this.checked;
     
@@ -83,12 +39,10 @@ document.getElementById("toggleNumberBack").addEventListener("change", function 
     }
 });
 
-
+// Function to hide the text container
 function buttonHide() {
     document.getElementById("textContainer").innerHTML = "";
 }
-
-
 function buttonClick() {
     console.log("btnUseFunction clicked");
     document.getElementById("textContainer").innerHTML = ""; // Clear previous entries
@@ -97,33 +51,27 @@ function buttonClick() {
     var customValue1 = document.getElementById("customValue1").value || 1;
     var customValue100 = document.getElementById("customValue100").value || 100;
     
-    
-
     for (var i = customValue1; i <= customValue100; i++) {
         var text = document.createElement("p");
         if (numberBackToggle == true) { //using == true for easier readability
             text.textContent = i;
         }
         else { 
-
-            
-            //if statement multiples of both 3 and 5 display “Eurofins”.
+            // If statement multiples of both 3 and 5 display “Eurofins”.
              if (i % 3 == 0 && i % 5 == 0) {
                 text.textContent = "Eurofins";
                 if (orangeToggle == true) {
                     text.className = "orange-background";
                 }
-
             }
-            //if statement when a number is divisable by 5 display "Five"
+            // If statement when a number is divisable by 5 display "Five"
             else if (i % 5 == 0) {
                 text.textContent = "Five";
                 if (redToggle == true) {
                     text.className = "red-background";
                 }
-
             }
-            //if statement when a number is divisable by 3 display "Three"
+            // If statement when a number is divisable by 3 display "Three"
             else if (i % 3 == 0) {
                 text.textContent = "Three";
                 console.log ("blue toggle is" + blueToggle);
@@ -131,22 +79,17 @@ function buttonClick() {
                     text.className = "blue-background";
                     console.log("should be blue")
                 }
-
             }
-            else if (!(i % 3 == 0 && i % 5 == 0) || !(i % 3 == 0 || i % 5 == 0)) { //if not divisable by 3 or 5 or both cover all other cases
+            else if (!(i % 3 == 0 && i % 5 == 0) || !(i % 3 == 0 || i % 5 == 0)) { // If not divisable by 3 or 5 or both cover all other cases
                 text.textContent = i;
             }
             else{
-                console.log("how did this happen"); //should never happen but just in case
-                
+                console.log("how did this happen"); // Should never happen but just in case
             }
         }
         document.getElementById("textContainer").appendChild(text);
     }
-
 }
-
-
 
 // Variables to store the state of each toggle
 var blueToggle = false;
@@ -169,7 +112,6 @@ function handleColorToggleChange(event) {
             orangeToggle = isChecked;
             break;
     }
-
     console.log(`${checkboxId}: ${isChecked}`);
 
     // If a button click state is true, invoke the buttonClick function
@@ -182,6 +124,3 @@ function handleColorToggleChange(event) {
 document.getElementById('toggleColorBlue').addEventListener('change', handleColorToggleChange);
 document.getElementById('toggleColorRed').addEventListener('change', handleColorToggleChange);
 document.getElementById('toggleColorOrange').addEventListener('change', handleColorToggleChange);
-
-
-
