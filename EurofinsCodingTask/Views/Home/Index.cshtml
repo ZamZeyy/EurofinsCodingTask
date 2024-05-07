@@ -18,26 +18,32 @@
 </head>
 <body>
     <section class="hidden">
+        <div>
+            <label style="margin:10px;" for="toggleDarkMode">Dark Mode:</label>
+            <div class="checkbox-wrapper-20">
+                <div class="switch" style="text-align: center; margin-bottom: 20px;">
+                    <input id="toggleDarkMode" class="input" type="checkbox">
+                    <label for="toggleDarkMode" class="slider"></label>
+                </div>
+            </div>
+        </div>
         <h1>Eurofins Coding Task</h1>
         <h1>By Mateusz Judka</h1>
         <p> Scroll</p>
         <p>↓↓↓</p>
     </section>
 
-    
-
-
-
     <section>
 
     <h1>Number display</h1>
 
-   <div style="border: 2px solid #000; padding: 10px; margin: 10px;">
+   <div id="boxColourChange" style="border: 2px solid #000; padding: 10px; margin: 10px;">
     <div style="background-color: #003883; padding: 20px; color: white;">
         <div style=" text-align: center;"> 
             <h2>Toggle Colour</h2>
         </div>
         <div style="text-align: center;">
+                    <!-- 1st Line of toggles-->
             <div style="display: flex; justify-content: space-around;">
                 <div>
                     <label style="margin:10px;" for="toggleColorBlue">Three:</label>
@@ -59,7 +65,7 @@
                     </div>
                 </div>
             </div>
-
+                    <!-- 2nd Line of toggles-->
             <div style="display: flex; justify-content: space-around; margin-top: 20px;">
                 <div>
                     <label style="margin:10px;" for="toggleColorOrange">Eurofins:</label>
@@ -113,8 +119,6 @@
     
     </section>
 
-   
-
 <script>
 $(document).ready(function() {
     $('#numbersForm').on('submit', function(e) {
@@ -140,7 +144,7 @@ $(document).ready(function() {
             url: '/Home/SaveNumbers',
             data: formData,
             success: function(response) {
-                alert('Numbers saved successfully!'); // Remove before Final commit
+                //alert('Numbers saved successfully!'); // Testing purposes
                 
             },
             error: function() {
@@ -148,13 +152,8 @@ $(document).ready(function() {
             }
         });
     });
-});
-
-
-        
+}); 
 </script>
-
-    
 </body>
 </html>
 

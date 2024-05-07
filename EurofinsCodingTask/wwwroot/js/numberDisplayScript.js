@@ -129,3 +129,26 @@ function handleColorToggleChange(event) {
 document.getElementById('toggleColorBlue').addEventListener('change', handleColorToggleChange);
 document.getElementById('toggleColorRed').addEventListener('change', handleColorToggleChange);
 document.getElementById('toggleColorOrange').addEventListener('change', handleColorToggleChange);
+
+// attach the event listenr for dark mode
+var darkMode = false;
+document.getElementById('toggleDarkMode').addEventListener('change', function () {
+    darkMode = this.checked;
+    var boxBorder = document.getElementById('boxColourChange');
+
+    if (darkMode == false) {
+        document.body.classList.add('dark-mode');
+        document.body.classList.remove('light-mode');
+        boxBorder.style.borderColor = '#ffffff';
+
+        console.log("dark mode");
+
+    } else {
+        document.body.classList.remove('dark-mode');
+        document.body.classList.add('light-mode'); 
+        boxBorder.style.borderColor = '#000000';
+
+        console.log("light mode");
+    }
+});
+

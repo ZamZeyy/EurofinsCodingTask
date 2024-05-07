@@ -13,6 +13,20 @@ body {
     margin: 0;
 }
 
+.dark-mode {
+    background-color: #131316;
+    color: #ffffff;
+}
+
+.light-mode {
+    background-color: #ffffff;
+    color: #131316;
+}
+
+body {
+    transition: background-color 0.3s, color 0.3s;
+}
+
 section {
     display: grid;
     place-items: center;
@@ -66,6 +80,16 @@ section {
     color: red;
     font-size: 18px;
     font-weight: bold;
+}
+
+.dark-mode{
+    background-color: #131316;
+    color: #ffffff;
+}
+
+.light-mode{
+    background-color: #ffffff;
+    color: #131316;
 }
 
 
