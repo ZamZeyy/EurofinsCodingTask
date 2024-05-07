@@ -11,6 +11,7 @@ Mateusz Judka
 var buttonClicked = false;
 var numberBackToggle = false;
 
+// Listen for clicks on the 'Hide' button to clear the displayed numbers
 document.getElementById("btnHide").addEventListener("click", function () {
     
     buttonHide();
@@ -20,17 +21,21 @@ document.getElementById("btnHide").addEventListener("click", function () {
 // Event listener for the form submission that also denies display if the custom value 1 is higher than custom value 100
 document.getElementById("numbersForm").addEventListener("submit", function (event) {
     
-    var customValueLower = document.getElementById("customValue1").value || 1;
-    var customValueHigher = document.getElementById("customValue100").value || 100;
+    var customValueLower = parseInt(document.getElementById("customValue1").value, 10) || 1;
+    var customValueHigher = parseInt(document.getElementById("customValue100").value, 10) || 100;
+
+    console.log("customValueLower: " + customValueLower);
+    console.log("customValueHigher: " + customValueHigher);
 
     if (customValueLower > customValueHigher) {
+        console.log("Custom value 1 is higher than custom value 100");
         return;
     }
     buttonClicked = true;
     buttonClick();
 });
 
-// Event listener for the number back toggle
+// Toggles the display of actual numbers based on the checkbox state stopping the display of "Three", "Five" and "Eurofins"
 document.getElementById("toggleNumberBack").addEventListener("change", function () {
     numberBackToggle = this.checked;
     
@@ -47,9 +52,9 @@ function buttonClick() {
     console.log("btnUseFunction clicked");
     document.getElementById("textContainer").innerHTML = ""; // Clear previous entries
 
-    // Get the custom values from the form 1 and 100 by default
-    var customValue1 = document.getElementById("customValue1").value || 1;
-    var customValue100 = document.getElementById("customValue100").value || 100;
+    // Get the custom values from the form 1 and 100 and pharse them as integers
+    var customValue1 = parseInt(document.getElementById("customValue1").value, 10) || 1;
+    var customValue100 = parseInt(document.getElementById("customValue100").value, 10) || 100;
     
     for (var i = customValue1; i <= customValue100; i++) {
         var text = document.createElement("p");

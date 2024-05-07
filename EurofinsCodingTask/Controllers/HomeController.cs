@@ -29,11 +29,6 @@ namespace EurofinsCodingTask.Controllers
             return View();
         }
 
-        public IActionResult Privacy()
-        {
-            return View();
-        }
-
         // POST: Home/SaveNumbers
         [HttpPost]
         public IActionResult SaveNumbers(String customValue1, String customValue100)
