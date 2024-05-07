@@ -140,16 +140,18 @@ document.getElementById('toggleDarkMode').addEventListener('change', function ()
     var boxBorder = document.getElementById('boxColourChange');
 
     if (darkMode == false) {
-        document.body.classList.add('dark-mode');
-        document.body.classList.remove('light-mode');
-        boxBorder.style.borderColor = '#ffffff';
+        
+        document.body.classList.remove('dark-mode');
+        document.body.classList.add('light-mode');
+        boxBorder.style.borderColor = '#000000';
 
         console.log("dark mode");
 
     } else {
-        document.body.classList.remove('dark-mode');
-        document.body.classList.add('light-mode'); 
-        boxBorder.style.borderColor = '#000000';
+       
+        document.body.classList.add('dark-mode');
+        document.body.classList.remove('light-mode');
+        boxBorder.style.borderColor = '#ffffff';
 
         console.log("light mode");
     }
