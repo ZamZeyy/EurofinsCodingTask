@@ -8,8 +8,11 @@ This script is used to display numbers 1-100 with the following conditions:
 Mateusz Judka
 */////////////////////////////////////////////////////////////////////////////
 
-var buttonClicked = false;
+var buttonClicked = true;
 var numberBackToggle = false;
+
+// Display the default numbers when the page loads
+buttonClick();
 
 // Listen for clicks on the 'Hide' button to clear the displayed numbers
 document.getElementById("btnHide").addEventListener("click", function () {
